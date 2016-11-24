@@ -6,7 +6,6 @@ var MainLayer = cc.Layer.extend({
     ctor : function()
     {
         this._super();
-
         // this.addChild(new cc.LayerColor(cc.color(184,153,0)));
         // this.addChild(new cc.LayerColor(cc.color(184,153,0)));
         var backgoundimage = new cc.Sprite(res.BackgoundImage);
@@ -33,8 +32,8 @@ var MainLayer = cc.Layer.extend({
             });
 
         }, this );
-        pause.x = cc.winSize.width * 0.8;
-        pause.y = cc.winSize.height * 0.92;
+        pause.x = cc.winSize.width * 0.83;
+        pause.y = cc.winSize.height * 0.95;
         // bnt.setScale(2);
         var set = new cc.MenuItemImage( res.menu_png, res.menu_png, function () {
 
@@ -45,7 +44,7 @@ var MainLayer = cc.Layer.extend({
 
         }, this );
         set.x = cc.winSize.width * 0.9;
-        set.y = cc.winSize.height * 0.92;
+        set.y = cc.winSize.height * 0.95;
         // bnt1.setScale(2);
         // var OverLabel = new cc.LabelTTF("游戏失败");
         // OverLabel.setFontSize(cc.winSize.width / 8);
