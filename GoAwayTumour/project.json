@@ -13,6 +13,8 @@
 
     "jsList" : [
         "src/resource.js",
+        "src/myChoose.js",
+        "src/Popups.js",
         "src/celldetailScene.js",
         "src/goldshopScene.js",
         "src/introductionScene.js",
