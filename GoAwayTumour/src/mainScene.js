@@ -6,7 +6,14 @@ var MainLayer = cc.Layer.extend({
     ctor : function()
     {
         this._super();
-        this.addChild(new cc.LayerColor(cc.color(184,153,0)));
+
+        // this.addChild(new cc.LayerColor(cc.color(184,153,0)));
+        // this.addChild(new cc.LayerColor(cc.color(184,153,0)));
+        var backgoundimage = new cc.Sprite(res.BackgoundImage);
+        backgoundimage.setRotation(180);
+        backgoundimage.x = cc.winSize.width / 2;
+        backgoundimage.y = cc.winSize.height / 2;
+        this.addChild(backgoundimage);
         var size = cc.winSize;
         DTHIS = this;    //DTHIS在此处类似于that
 
@@ -26,8 +33,8 @@ var MainLayer = cc.Layer.extend({
             });
 
         }, this );
-        pause.x = cc.winSize.width * 0.83;
-        pause.y = cc.winSize.height * 0.95;
+        pause.x = cc.winSize.width * 0.8;
+        pause.y = cc.winSize.height * 0.92;
         // bnt.setScale(2);
         var set = new cc.MenuItemImage( res.menu_png, res.menu_png, function () {
 
@@ -38,8 +45,12 @@ var MainLayer = cc.Layer.extend({
 
         }, this );
         set.x = cc.winSize.width * 0.9;
-        set.y = cc.winSize.height * 0.95;
+        set.y = cc.winSize.height * 0.92;
         // bnt1.setScale(2);
+        // var OverLabel = new cc.LabelTTF("游戏失败");
+        // OverLabel.setFontSize(cc.winSize.width / 8);
+        // OverLabel.setFontFillColor(cc.color.BLACK);
+        // OverLabel.enableStroke(cc.color.YELLOW, 5);
         var over = new cc.MenuItemFont( "游戏失败", function () {
 
             //显示弹窗。function为回调函数，弹窗完全展示后回调
@@ -48,6 +59,7 @@ var MainLayer = cc.Layer.extend({
             });
 
         }, this );
+
         over.x = cc.winSize.width * 0.8;
         over.y = cc.winSize.height * 0.4;
 
@@ -65,6 +77,7 @@ var MainLayer = cc.Layer.extend({
         var menu = new cc.Menu(pause,set,over,win);
         menu.x = 0;
         menu.y = 0;
+        // menu.setFontFillColor(cc.color.BLACK);
         this.addChild(menu);
     },
 
@@ -173,7 +186,8 @@ var MainLayer = cc.Layer.extend({
         //重新选关按钮
         var selectItem = new cc.MenuItemImage(res.SelectNormal_png,res.SelectSelected_png, function () {
             this.overpus.hidden(this.overpus, function(){
-                console.log('跳转到选关界面');
+                // console.log('跳转到选关界面');
+                cc.director.runScene(new LevelScene());
             });
         }, this);
 
@@ -221,6 +235,7 @@ var MainLayer = cc.Layer.extend({
         var selectItem = new cc.MenuItemImage(res.SelectNormal_png,res.SelectSelected_png, function () {
             this.winpus.hidden(this.winpus, function(){
                 console.log('跳转到选关界面');
+                cc.director.runScene(new LevelScene());
             });
         }, this);
 
