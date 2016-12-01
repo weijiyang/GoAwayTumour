@@ -1,0 +1,27 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : true,
+    "frameRate" : 60,
+    "noCache" : false,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d"],
+
+    "jsList" : [
+        "src/resource.js",
+        "src/myChoose.js",
+        "src/Popups.js",
+        "src/celldetailScene.js",
+        "src/goldshopScene.js",
+        "src/introductionScene.js",
+        "src/levelScene.js",
+        "src/mainScene.js",
+        "src/starshopScene.js",
+        "src/startScene.js",
+        "src/tumourdetailScene.js"
+    ]
+}
