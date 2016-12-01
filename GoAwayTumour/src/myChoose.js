@@ -21,8 +21,8 @@ var myChoose = cc.Sprite.extend({
                  var targetSize = target.getBoundingBox();
                  var frame = cc.rect(0,0,targetSize.width,targetSize.height);
                  if(cc.rectContainsPoint(target.getBoundingBox(),location)){
-                     // cc.log("点击关卡");
-                     cc.director.runScene(new MainScene());
+                     //cc.log("点击关卡");
+                    cc.director.runScene(new MainScene());
                  return true;
                  }
                 return false;//返回false时，后面不执行

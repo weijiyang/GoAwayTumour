@@ -24,7 +24,7 @@ var StartLayer = cc.Layer.extend({
         this.addChild(logo);
 
         //开始游戏按钮
-        var startItem = new cc.MenuItemImage(res.startbtn,res.startbtn,function () {
+        var startItem = new cc.MenuItemImage(res.startbtn,res.startbtn2,function () {
             //进入选关页面接口
             cc.director.runScene(new LevelScene());
         }, this);
@@ -32,7 +32,8 @@ var StartLayer = cc.Layer.extend({
         menu1.y = size.height * 0.2;
         this.addChild(menu1);
 
-        var aboutUsItem = new cc.MenuItemImage( res.aboutusbtn, res.aboutusbtn, function () {
+        //关于我们
+        var aboutUsItem = new cc.MenuItemImage( res.aboutusbtn, res.aboutusbtn2, function () {
             //显示弹窗。function为回调函数，弹窗完全展示后回调
             this.pus.show(this.pus, function(){
                 console.log('关于我们弹窗打开了');
@@ -41,9 +42,9 @@ var StartLayer = cc.Layer.extend({
 /*        aboutUsItem.x = cc.winSize.width * 0.83;
         aboutUsItem.y = cc.winSize.height * 0.95;*/
         var menu2 = new cc.Menu(aboutUsItem);
-        menu2.x = size.width*0.8;
-        menu2.y = size.height * 0.9;
-        this.addChild(menu2);
+        menu2.x = startbg.width*0.95;
+        menu2.y = startbg.height * 0.9;
+        startbg.addChild(menu2);
 
         return true;
     },
