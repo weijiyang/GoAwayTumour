@@ -48,7 +48,7 @@ var myChoose = cc.Sprite.extend({
     },
     onExit:function(){
         this._super();
-        cc.log("onExit调用 移除监听器");
+        // cc.log("onExit调用 移除监听器");
         cc.eventManager.removeListener(this.listener);
     }
 });

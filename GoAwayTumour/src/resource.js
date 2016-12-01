@@ -72,7 +72,10 @@ var res = {
     tumour72:"res/TumourImages/tumour7_2.png",
     //曹阳
     // BackgoundImage:"res/mainScene/background.png",
-    BackgoundImage:"res/mainScene/stage_map_7.png",
+    BGS:"res/mainScene/1.tmx",
+    plus:"res/mainScene/play/select_01.png",
+    minus:"res/mainScene/play/warning.png",
+    BackgoundImage:"res/mainScene/1.png",
     pressed:"res/CellImages/share_setting_pressed.png",
     pressed2:"res/CellImages/share_setting_pressed_2.png",
     //张东杰
@@ -98,6 +101,11 @@ var res = {
     GrayStar1_png:"res/mainScene/graystar1.png",
     GrayStar2_png:"res/mainScene/graystar2.png",
     GrayStar3_png:"res/mainScene/graystar3.png",
+
+    Bottleplist_plist:"res/mainScene/play/Tower/Bottle.plist",
+    // Bottle_01:"res/mainScene/play/Tower/Bottle/Bottle01.png",
+    Bottle_png:"res/mainScene/play/Tower/Bottle.png",
+
     tc : 'res/mainScene/tc.png'
 };
 
@@ -105,3 +113,38 @@ var g_resources = [];
 for (var i in res) {
     g_resources.push(res[i]);
 }
+
+var gameres={
+
+};
+var g_gamePlay_resources = [];
+for (var j in res) {
+    g_gamePlay_resources.push(gameres[j]);
+}
+/*g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle.plist");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle.png");*/
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle01.png");
+
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle_3.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle00.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle11.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle12.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle13.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle21.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle22.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle23.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle31.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle32.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/Bottle33.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle01.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle02.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle11.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle12.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle13.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle21.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle22.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle23.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle31.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle32.png");
+g_gamePlay_resources.push("res/mainScene/play/Tower/Bottle/PBottle33.png");
+
