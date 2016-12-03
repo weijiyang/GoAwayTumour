@@ -17,8 +17,8 @@ var res = {
     pokereturnbtn : "res/PokedexImages/returnbutton.png",
     display1:"res/PokedexImages/display1.jpg",
     display2:"res/PokedexImages/display2.jpg",
-/*    celldisplay:"res/CellImages/celldisplay.png",
-    cellgrid:"res/CellImages/cellgrid.png",*/
+    /*    celldisplay:"res/CellImages/celldisplay.png",
+     cellgrid:"res/CellImages/cellgrid.png",*/
     //崔迎春
     stagemap_toolbar_home:"res/ChooseLevel/stagemap_toolbar_home.png",
     stagemap_toolbar_home2:"res/ChooseLevel/stagemap_toolbar_home2.png",
@@ -46,10 +46,10 @@ var res = {
     Bg_mp3:"res/music/background.mp3",
     Click_mp3:"res/music/click.mp3",
     //细胞部分:郑蕊和王凯名
-/*    XiBao3_png : "res/celldetailScene/xibao3.png",
-    XiBao32_png : "res/celldetailScene/xibao3_2.png",*/
-    celldisplay:"res/CellImages/celldisplay.png",
-    celldisplay2:"res/CellImages/celldisplay2.png",
+    /*    XiBao3_png : "res/celldetailScene/xibao3.png",
+     XiBao32_png : "res/celldetailScene/xibao3_2.png",*/
+    celldisplay:"res/CellImages/celldisplay12.png",
+    celldisplay2:"res/CellImages/celldisplay22.png",
     cellgrid:"res/CellImages/cellgrid.png",
     blackboard:"res/CellImages/blackboard.png",
     cell1:"res/CellImages/cell1_2.png",
