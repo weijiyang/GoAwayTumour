@@ -15,9 +15,9 @@ var IntroductionLayer = cc.Layer.extend({
         var title = new cc.LabelTTF("图 鉴");
         title.setFontSize(size.width*0.05);
         title.enableStroke(cc.color.BLUE, 5);
-        title.x = size.width * 0.5;
-        title.y = size.height*0.93;
-        this.addChild(title);
+        title.x = pokedexbg.width * 0.5;
+        title.y = pokedexbg.height*0.92;
+        pokedexbg.addChild(title);
 
 
         //展示框1
@@ -44,7 +44,7 @@ var IntroductionLayer = cc.Layer.extend({
 
 
         //细胞
-        var cellItem = new cc.MenuItemImage(res.pokecell,res.pokecell, function () {
+        var cellItem = new cc.MenuItemImage(res.pokecell,res.pokecell2, function () {
             //细胞详情页接口
             cc.director.runScene(new CellDetailScene());
         }, this);
@@ -55,7 +55,7 @@ var IntroductionLayer = cc.Layer.extend({
 
 
         //肿瘤
-        var tumourItem = new cc.MenuItemImage(res.poketumour,res.poketumour, function () {
+        var tumourItem = new cc.MenuItemImage(res.poketumour,res.poketumour2, function () {
             //肿瘤详情页接口
             cc.director.runScene(new TumourDetailScene());
         }, this);
@@ -66,28 +66,41 @@ var IntroductionLayer = cc.Layer.extend({
 
 
         //查看细胞按钮
-        var cellbtnItem = new cc.MenuItemImage(res.pokecellbtn, res.pokecellbtn,function () {
+        var cellbtnItem = new cc.MenuItemImage(res.pokecellbtn, res.pokecellbtn2,function () {
             //细胞详情页接口
             cc.director.runScene(new CellDetailScene());
         }, this);
         var menu3 = new cc.Menu(cellbtnItem);
-        menu3.x = pokedexbg.width*0.25;
+        menu3.x = pokedexbg.width*0.22;
         menu3.y = pokedexbg.height * 0.2;
         pokedexbg.addChild(menu3);
         cc.scaleBy()
 
 
         //查看肿瘤按钮
-        var tumourbtnItem = new cc.MenuItemImage(res.poketumourbtn,res.poketumourbtn, function () {
+        var tumourbtnItem = new cc.MenuItemImage(res.poketumourbtn,res.poketumourbtn2, function () {
             //肿瘤详情页接口
             cc.director.runScene(new TumourDetailScene());
         }, this);
         var menu4 = new cc.Menu(tumourbtnItem);
-        menu4.x = pokedexbg.width*0.73;
+        menu4.x = pokedexbg.width*0.72;
         menu4.y = pokedexbg.height * 0.2;
         pokedexbg.addChild(menu4);
 
+        //返回按钮
+        var press= new cc.MenuItemImage(res.pressed, res.pressed2, function () {
+            //详情介绍接口
+            // cc.log("显示详情");
+            cc.director.runScene(new LevelScene());
+        }, this);
+        press.x = pokedexbg.width*0.05;
+        press.y = pokedexbg.height*0.9;
+        var menu0 = new cc.Menu(press);
+        menu0.x = 0;
+        menu0.y = 0;
+        pokedexbg.addChild(menu0);
 
+/*
         //返回按钮
         var returnbtnItem = new cc.MenuItemImage(res.pokereturnbtn,res.pokereturnbtn,function () {
             //关卡接口
@@ -97,7 +110,7 @@ var IntroductionLayer = cc.Layer.extend({
         menu5.x = pokedexbg.width*0.9;
         menu5.y = pokedexbg.height * 0.05;
         pokedexbg.addChild(menu5);
-
+*/
         return true;
     }
 });

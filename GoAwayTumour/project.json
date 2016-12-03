@@ -13,6 +13,11 @@
 
     "jsList" : [
         "src/resource.js",
+        "src/define.js",
+        "src/GameManager.js",
+        "src/TowerBase.js",
+        "src/Bottle.js",
+        "src/TowerPanel.js",
         "src/myChoose.js",
         "src/Popups.js",
         "src/celldetailScene.js",

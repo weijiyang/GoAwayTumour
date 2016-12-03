@@ -13,53 +13,56 @@ var LevelLayer = cc.Layer.extend({
         this.addChild(bg,0);
         //添加左上角按钮
         var tool_leftbg = new cc.Sprite(res.stagemap_toolbar_leftbg);
+        tool_leftbg.setAnchorPoint(0,0);
         /*tool_leftbg.setAnchorPoint(cc.p(0,1));
          tool_leftbg.x = size.width*0;
          tool_leftbg.y = size.height*1;*/
-        tool_leftbg.x = bg.width*0.27;
-        tool_leftbg.y = bg.height*0.93;
-        this.addChild(tool_leftbg,1);
+        tool_leftbg.x = bg.width*0.001;
+        tool_leftbg.y = bg.height*0.846;
+        bg.addChild(tool_leftbg,1);
+
+        //右边
         var tool_rightbg = new cc.Sprite(res.stagemap_toolbar_rightbg);
         /*tool_rightbg.setAnchorPoint(cc.p(1,1));
          tool_rightbg.x = size.width*1;
          tool_rightbg.y = size.height*1;*/
-        tool_rightbg.x = bg.width*0.93;
-        tool_rightbg.y = bg.height*0.93;
-        this.addChild(tool_rightbg,1);
+        tool_rightbg.x = bg.width*0.865;
+        tool_rightbg.y = bg.height*0.92;
+        bg.addChild(tool_rightbg,1);
         //添加按钮
-        var homeItem = new cc.MenuItemImage(res.stagemap_toolbar_home,"",function(){
+        var homeItem = new cc.MenuItemImage(res.stagemap_toolbar_home,res.stagemap_toolbar_home2,function(){
             cc.log("返回主页");
             cc.director.runScene(new StartScene());
         },this);
         var homeMenu = new cc.Menu(homeItem);
-        homeMenu.x = size.width*0.133;
-        homeMenu.y = size.height*0.935;
-        this.addChild(homeMenu,2);
-        var storeItem = new cc.MenuItemImage(res.stagemap_toolbar_shop,"",function(){
+        homeMenu.x = tool_leftbg.width*0.18;
+        homeMenu.y = tool_leftbg.height*0.56;
+        tool_leftbg.addChild(homeMenu,2);
+        var storeItem = new cc.MenuItemImage(res.stagemap_toolbar_shop,res.stagemap_toolbar_shop2,function(){
             cc.log("进入商店");
         },this);
         var storeMenu = new cc.Menu(storeItem);
-        storeMenu.x = size.width*0.222;
-        storeMenu.y = size.height*0.935;
-        this.addChild(storeMenu,2);
-        var picItem = new cc.MenuItemImage(res.stagemap_toolbar_leaderboard,"",function(){
+        storeMenu.x = tool_leftbg.width*0.475;
+        storeMenu.y = tool_leftbg.height*0.56;
+        tool_leftbg.addChild(storeMenu,2);
+        var picItem = new cc.MenuItemImage(res.stagemap_toolbar_leaderboard,res.stagemap_toolbar_leaderboard2,function(){
             cc.log("排行榜/图鉴");
             cc.director.runScene(new IntroductionScene());
         },this);
         var picMenu = new cc.Menu(picItem);
-        picMenu.x = size.width*0.311;
-        picMenu.y = size.height*0.935;
-        this.addChild(picMenu,2);
-        var settingItem = new cc.MenuItemImage(res.stagepoint_chance,"",function(){
+        picMenu.x = tool_leftbg.width*0.77;
+        picMenu.y = tool_leftbg.height*0.56;
+        tool_leftbg.addChild(picMenu,2);
+        var settingItem = new cc.MenuItemImage(res.stagepoint_chance,res.stagepoint_chance2,function(){
             // cc.log("设置");
             this.pus.show(this.pus, function(){
                 console.log('弹窗打开了');
             });
         },this);
         var settingMenu = new cc.Menu(settingItem);
-        settingMenu.x = size.width*0.881;
-        settingMenu.y = size.height*0.835;
-        this.addChild(settingMenu,2);
+        settingMenu.x = tool_rightbg.width*0.86;
+        settingMenu.y = tool_rightbg.height*0.76;
+        tool_rightbg.addChild(settingMenu,2);
 
 
         //1
