@@ -27,6 +27,7 @@
         "src/mainScene.js",
         "src/starshopScene.js",
         "src/startScene.js",
-        "src/tumourdetailScene.js"
+        "src/tumourdetailScene.js",
+        "src/move.js"
     ]
 }

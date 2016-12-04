@@ -82,7 +82,7 @@ var res = {
     tumour72:"res/TumourImages/tumour7_2.png",
     //曹阳
     // BackgoundImage:"res/mainScene/background.png",
-    BGS:"res/mainScene/1.tmx",
+    BGS:"res/mainScene/9.tmx",
     plus:"res/mainScene/play/select_01.png",
     minus:"res/mainScene/play/warning.png",
     BackgoundImage:"res/mainScene/1.png",
@@ -90,6 +90,11 @@ var res = {
     pressed2:"res/CellImages/share_setting_pressed_2.png",
     //张东杰
     HelloWorld_png : "res/HelloWorld.png",
+    topBg_png:"res/mainScene/top_bg.png",
+    wavesBg_png:"res/mainScene/waves_bg.png",
+    abc_png:"res/mainScene/abc.png",
+    speed0_png:"res/mainScene/speed_0.png",
+    speed1_png:"res/mainScene/speed_1.png",
     Tan_png : "res/mainScene/tan.png",
     bnt : 'res/mainScene/bnt.png',
     pause_0 : 'res/mainScene/pause_0.png',

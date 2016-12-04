@@ -14,7 +14,8 @@ var MainLayer = cc.Layer.extend({
     tiledMapRectMapEnemu: {},   // 瓦片地图区域映射枚举
     currGroupCreatedMonsterCount : 0,
     currGroupCreatedMonsterSum : 0,
-
+    newS:null,
+    pro:null,
     ctor : function()
     {
         this._super();
@@ -39,8 +40,34 @@ var MainLayer = cc.Layer.extend({
         // 加载[瓦片地图区域映射]
         this.loadTiledMapRectArrayMap();
 
-        this.initBnt();
         this.registerEvent();
+        this.showTopBg();
+        this.initBnt();
+
+        //实例化一个新的精灵对象
+        var newSprite = new Move(res.abc_png);
+        this.newS = newSprite;
+        newSprite.getArray(this.tiledMap,this.arr);
+        var tileSize = this.tiledMap.getTileSize();
+        var objectGroup = this.tiledMap.getObjectGroup("object");
+        var player = objectGroup.getObject("player");
+        newSprite.setAnchorPoint(cc.p(0.4,0.5));
+        newSprite.x =player.x;
+        newSprite.y =player.y;
+        this.addChild(newSprite);
+        newSprite.getLength(newSprite.arr);
+        newSprite.times(newSprite.sort);
+
+        var protect = new cc.Sprite(res.cell52);
+        this.pro = protect;
+        var tileSize = this.tiledMap.getTileSize();
+        var objectGroup = this.tiledMap.getObjectGroup("object");
+        var end = objectGroup.getObject("end");
+        protect.setAnchorPoint(cc.p(0.4,0.5));
+        protect.x =end.x;
+        protect.y =end.y;
+        this.addChild(protect);
+
         var  listener = cc.EventListener.create({
             event:cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches:true,
@@ -87,6 +114,62 @@ var MainLayer = cc.Layer.extend({
 /*        this.createTower();
         this.onCreateTower();*/
         // this.removeTowerPanel();
+        this.schedule(this.collision,0.5);
+    },
+    collision:function () {
+        that =this;
+        if(cc.rectContainsPoint(this.pro.getBoundingBox(),this.newS.getPosition())){
+            this.overpus.show(this.overpus, function(){
+                that.unschedule(that.collision);
+                console.log('游戏失败了');
+            });
+        }
+    },
+    showTopBg:function(){
+        var topBg = new cc.Sprite(res.topBg_png);
+        topBg.x = cc.winSize.width*0.5;
+        topBg.y = cc.winSize.height*0.93;
+        this.addChild(topBg);
+
+        var wavesBg = new cc.Sprite(res.wavesBg_png);
+        wavesBg.x = cc.winSize.width*0.5;
+        wavesBg.y = cc.winSize.height*0.93;
+        this.addChild(wavesBg);
+
+        var word = new cc.LabelTTF("波怪物","Arial",30);
+        word.setFontFillColor(cc.color.WHITE);
+        word.x = cc.winSize.width*0.55;
+        word.y = cc.winSize.height*0.94;
+        this.addChild(word);
+
+        var immunity = new cc.LabelTTF("1000","",30);
+        immunity.setFontFillColor(cc.color.WHITE);
+        immunity.enableStroke(cc.color.WHITE, 2);
+        immunity.x = cc.winSize.width*0.2;
+        immunity.y = cc.winSize.height*0.94;
+        this.addChild(immunity);
+
+        var speed0Item = new cc.MenuItemImage(res.speed0_png,res.speed0_png, function () {
+        }, this);
+        var speed1Item = new cc.MenuItemImage(res.speed1_png,res.speed1_png, function () {
+        }, this);
+
+        var speedToggle = new cc.MenuItemToggle(speed0Item,speed1Item,function () {
+            speedToggle.getSelectedIndex();
+            if(speedToggle.getSelectedIndex()==1){
+                this.newS.unschedule(this.newS.moveToNextRoad);
+                this.newS.schedule(this.newS.moveToNextRoad1,0.25);
+            }else{
+                this.newS.unschedule(this.newS.moveToNextRoad1);
+                this.newS.schedule(this.newS.moveToNextRoad,0.5);
+            }
+            cc.log(speedToggle.getSelectedIndex());
+        },this);
+
+        var speedMenu = new cc.Menu(speedToggle);
+        speedMenu.x = cc.winSize.width*0.7;
+        speedMenu.y = cc.winSize.height*0.93;
+        this.addChild(speedMenu);
     },
     onExit:function() {
         this._super();
@@ -330,15 +413,26 @@ var MainLayer = cc.Layer.extend({
     },
     initBnt : function()
     {
-        var pause = new cc.MenuItemImage( res.pause_0, res.pause_0, function () {
-            //显示弹窗。function为回调函数，弹窗完全展示后回调
-            this.pus.show(this.pus, function(){
-                console.log('弹窗打开了');
-            });
+        var pause0Item = new cc.MenuItemImage(res.pause_0,res.pause_0, function () {
+        }, this);
+        var pause1Item = new cc.MenuItemImage(res.pause_1,res.pause_1, function () {
+        }, this);
 
-        }, this );
-        pause.x = cc.winSize.width * 0.83;
-        pause.y = cc.winSize.height * 0.95;
+        var pauseToggle = new cc.MenuItemToggle(pause0Item,pause1Item,function () {
+            //this.newS.unschedule(this.newS.moveToNextRoad);
+            cc.director.pause();
+            pauseToggle.getSelectedIndex();
+            cc.log(pauseToggle.getSelectedIndex());
+            if(pauseToggle.getSelectedIndex()==0){
+                cc.director.resume();
+            }
+        },this);
+
+        var pauseMenu = new cc.Menu(pauseToggle);
+        pauseMenu.x = cc.winSize.width*0.8;
+        pauseMenu.y = cc.winSize.height*0.93;
+        this.addChild(pauseMenu);
+
         // bnt.setScale(2);
         var set = new cc.MenuItemImage( res.menu_png, res.menu_png, function () {
 
@@ -348,14 +442,14 @@ var MainLayer = cc.Layer.extend({
             });
 
         }, this );
-        set.x = cc.winSize.width * 0.9;
-        set.y = cc.winSize.height * 0.95;
+        set.x = cc.winSize.width * 0.86;
+        set.y = cc.winSize.height * 0.93;
         // bnt1.setScale(2);
         // var OverLabel = new cc.LabelTTF("游戏失败");
         // OverLabel.setFontSize(cc.winSize.width / 8);
         // OverLabel.setFontFillColor(cc.color.BLACK);
         // OverLabel.enableStroke(cc.color.YELLOW, 5);
-        var over = new cc.MenuItemFont( "游戏失败", function () {
+        /*var over = new cc.MenuItemFont( "游戏失败", function () {
 
             //显示弹窗。function为回调函数，弹窗完全展示后回调
             this.overpus.show(this.overpus, function(){
@@ -367,6 +461,7 @@ var MainLayer = cc.Layer.extend({
         over.x = cc.winSize.width * 0.8;
         over.y = cc.winSize.height * 0.4;
 
+
         var win = new cc.MenuItemFont( "闯关成功", function () {
 
             //显示弹窗。function为回调函数，弹窗完全展示后回调
@@ -376,9 +471,9 @@ var MainLayer = cc.Layer.extend({
 
         }, this );
         win.x = cc.winSize.width * 0.8;
-        win.y = cc.winSize.height * 0.6;
+        win.y = cc.winSize.height * 0.6;*/
 
-        var menu = new cc.Menu(pause,set,over,win);
+        var menu = new cc.Menu(set);
         menu.x = 0;
         menu.y = 0;
         // menu.setFontFillColor(cc.color.BLACK);
