@@ -94,12 +94,27 @@ var CellDetailLayer = cc.Layer.extend({
         title4.y =blackboard.height*0.35;
         blackboard.addChild(title4);
 
-        var title5 = new cc.LabelTTF("知识科普：");
+       /* var title5 = new cc.LabelTTF("知识科普：");
         title5.setFontSize(size.width*0.03);
         title5.setFontFillColor(cc.color.BLACK);
         title5.x = blackboard .width * 0.35;
         title5.y =blackboard.height*0.2;
-        blackboard.addChild(title5);
+        blackboard.addChild(title5);*/
+
+        var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+            //返回初次场景
+            cc.director.runScene(new CelloneScene());
+        },this);
+        sciencerestart.x=blackboard.width*0.5;
+        sciencerestart.y=blackboard.height*0.15;
+        var menu=new cc.Menu(sciencerestart);
+        menu.x = 0;
+        menu.y = 0;
+        blackboard.addChild(menu);
+
+
+
+
 
 
         //细胞格子
@@ -152,6 +167,19 @@ var CellDetailLayer = cc.Layer.extend({
         var cell1= new cc.MenuItemImage(res.cell12,res.cell1, function () {
             cellone.setTexture(res.cell12);
             title1.setString("淋巴细胞");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new CelloneScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
+
         }, this);
         cell1.x = cellgridItem1.width*0.5;
         cell1.y = cellgridItem1.height*0.5;
@@ -162,11 +190,22 @@ var CellDetailLayer = cc.Layer.extend({
         //细胞2
         var cell2= new cc.MenuItemImage(res.cell22, res.cell2, function () {
             cellone.setTexture(res.cell22);
-            title1.setString("上皮细胞");
+            title1.setString("粒细胞");
             title2.setString("攻击范围：40");
             title3.setString("攻击伤害：20");
             title4.setString("攻击速度：2");
-            title5.setString("知识科普：");
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new CelltwoScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
+
         }, this);
         cell2.x = cellgridItem2.width*0.5;
         cell2.y = cellgridItem2.height*0.5;
@@ -181,7 +220,19 @@ var CellDetailLayer = cc.Layer.extend({
             title2.setString("攻击范围：50");
             title3.setString("攻击伤害：20");
             title4.setString("攻击速度：5");
-            title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new CellthreeScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
+
         }, this);
         cell3.x = cellgridItem3.width*0.5;
         cell3.y = cellgridItem3.height*0.5;
@@ -193,10 +244,21 @@ var CellDetailLayer = cc.Layer.extend({
         var cell4= new cc.MenuItemImage(res.cell42, res.cell4, function () {
             cellone.setTexture(res.cell42);
             title1.setString("吞噬细胞");
-            title2.setString("攻击范围： 0");
+            title2.setString("攻击范围：00");
             title3.setString("攻击伤害：90");
             title4.setString("攻击速度：1");
-            title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new CellfourScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         cell4.x = cellgridItem4.width*0.5;
         cell4.y = cellgridItem4.height*0.5;
@@ -211,7 +273,18 @@ var CellDetailLayer = cc.Layer.extend({
             title2.setString("攻击范围：50");
             title3.setString("攻击伤害：30");
             title4.setString("攻击速度：4");
-            title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new CellfiveScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell5.x = cellgridItem5.width*0.5;
@@ -223,11 +296,22 @@ var CellDetailLayer = cc.Layer.extend({
         //细胞6
         var cell6= new cc.MenuItemImage(res.cell62, res.cell6, function () {
             cellone.setTexture(res.cell62);
-            title1.setString("白细胞");
+            title1.setString("上皮细胞");
             title2.setString("攻击范围：30");
             title3.setString("攻击伤害：30");
             title4.setString("攻击速度：3");
-            title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new CellsixScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell6.x = cellgridItem6.width*0.5;
@@ -239,11 +323,22 @@ var CellDetailLayer = cc.Layer.extend({
         //细胞7
         var cell7= new cc.MenuItemImage(res.cell72, res.cell7, function () {
             cellone.setTexture(res.cell72);
-            title1.setString("心肌细胞");
+            title1.setString("浆细胞");
             title2.setString("攻击范围：60");
             title3.setString("攻击伤害：10");
             title4.setString("攻击速度：3");
-            title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new CellsevenScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         cell7.x = cellgridItem7.width*0.5;
         cell7.y = cellgridItem7.height*0.5;

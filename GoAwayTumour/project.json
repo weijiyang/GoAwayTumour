@@ -17,6 +17,8 @@
         "src/GameManager.js",
         "src/TowerBase.js",
         "src/Bottle.js",
+        "src/cell1.js",
+        "src/cell2.js",
         "src/TowerPanel.js",
         "src/myChoose.js",
         "src/Popups.js",
@@ -28,6 +30,15 @@
         "src/starshopScene.js",
         "src/startScene.js",
         "src/tumourdetailScene.js",
-        "src/move.js"
+        "src/move.js",
+        "src/MyCell.js",
+        "src/dropBlood.js",
+        "src/cellscience/cellone.js",
+        "src/cellscience/celltwo.js",
+        "src/cellscience/cellthree.js",
+        "src/cellscience/cellfour.js",
+        "src/cellscience/cellfive.js",
+        "src/cellscience/cellsix.js",
+        "src/cellscience/cellseven.js"
     ]
 }

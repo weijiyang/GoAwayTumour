@@ -43,9 +43,14 @@ var MainLayer = cc.Layer.extend({
         this.registerEvent();
         this.showTopBg();
         this.initBnt();
+       // this.animation();
 
+        var newCell = new MyCell(res.Cell_1);
+        newCell.x = cc.winSize.width/2;
+        newCell.y = cc.winSize.height*0.7;
+        this.addChild(newCell);
         //实例化一个新的精灵对象
-        var newSprite = new Move(res.abc_png);
+        var newSprite = new Move(res.abc0_png);
         this.newS = newSprite;
         newSprite.getArray(this.tiledMap,this.arr);
         var tileSize = this.tiledMap.getTileSize();
@@ -89,7 +94,7 @@ var MainLayer = cc.Layer.extend({
                 }else {
                     // 已经有塔或者障碍物
                     if (self.tiledMapRectArrayMap[result.row][result.cel] != self.tiledMapRectMapEnemu.NONE) {
-                        cc.log("aaa"+self.tiledMapRectArrayMap[result.row][result.cel]);
+                        cc.log(self.tiledMapRectArrayMap[result.row][result.cel]);
                         self.loadTouchWarning(result.x + self.tileSize.width / 2, result.y + self.tileSize.height / 2);
                     }else{
                         // 当前位置没有塔和障碍物
@@ -116,6 +121,17 @@ var MainLayer = cc.Layer.extend({
         // this.removeTowerPanel();
         this.schedule(this.collision,0.5);
     },
+    // animation:function(){
+    //     var animation = new cc.Animation();
+    //     for (var i = 0; i < 2; i++) {
+    //         var frameName = "res/mainScene/abc" + i + ".png";
+    //         animation.addSpriteFrameWithFile(frameName);
+    //     }
+    //     animation.setDelayPerUnit(1 / 30);
+    //     animation.setRestoreOriginalFrame(true);
+    //     var animateAction = cc.animate(animation);
+    //     this.newS.runAction(cc.repeatForever(animateAction));
+    // },
     collision:function () {
         that =this;
         if(cc.rectContainsPoint(this.pro.getBoundingBox(),this.newS.getPosition())){
@@ -158,9 +174,9 @@ var MainLayer = cc.Layer.extend({
             speedToggle.getSelectedIndex();
             if(speedToggle.getSelectedIndex()==1){
                 this.newS.unschedule(this.newS.moveToNextRoad);
-                this.newS.schedule(this.newS.moveToNextRoad1,0.25);
+                this.newS.schedule(this.newS.moveToNextRoad_fast,0.25);
             }else{
-                this.newS.unschedule(this.newS.moveToNextRoad1);
+                this.newS.unschedule(this.newS.moveToNextRoad_fast);
                 this.newS.schedule(this.newS.moveToNextRoad,0.5);
             }
             cc.log(speedToggle.getSelectedIndex());
@@ -249,10 +265,20 @@ var MainLayer = cc.Layer.extend({
     loadTiledMapRectArrayMap : function(){
         var i;
         var mapSize = this.tiledMap.getMapSize();
+        var bgLayer = this.tiledMap.getLayer("bg");     //.getLayer("bg");
+        var tileGID =null;
+        var properties =null;
         for (i = 0; i < mapSize.height; i++) {
             this.tiledMapRectArrayMap[i] = [];
             for (var j = 0; j < mapSize.width; j++) {
-                this.tiledMapRectArrayMap[i][j] = this.tiledMapRectMapEnemu.NONE;
+                tileGID=bgLayer.getTileGIDAt(cc.p(i,j),0);
+                properties=this.tiledMap.getPropertiesForGID(tileGID);
+                cc.log(properties.type);
+                if("block" != properties.type){
+                    this.tiledMapRectArrayMap[i][j] = this.tiledMapRectMapEnemu.BLOCK;
+                }else{
+                    this.tiledMapRectArrayMap[i][j] = this.tiledMapRectMapEnemu.NONE;
+                }
                 // cc.log("地图区域映射加载完成");
             }
         }
@@ -379,7 +405,6 @@ var MainLayer = cc.Layer.extend({
             y : index.y
         };
     },
-
     // 创建塔
     createTower : function(data){
         cc.assert(data.name, "GPMainLayer.createTower(): 名字无效！");
@@ -397,6 +422,16 @@ var MainLayer = cc.Layer.extend({
                 towerData.scope = 300;
                 towerData.bulletSpeed = 40;
                 node = new Bottle(towerData);
+                break;
+            case "Cell1":
+                towerData.scope = 300;
+                towerData.bulletSpeed = 40;
+                node = new Cell1(towerData);
+                break;
+            case "Cell2":
+                towerData.scope = 300;
+                towerData.bulletSpeed = 40;
+                node = new Cell2(towerData);
                 break;
             default :
                 cc.warn("GPMainLayer.createTower() : 异常");
@@ -435,12 +470,12 @@ var MainLayer = cc.Layer.extend({
 
         // bnt.setScale(2);
         var set = new cc.MenuItemImage( res.menu_png, res.menu_png, function () {
-
             //显示弹窗。function为回调函数，弹窗完全展示后回调
+            this.newS.unschedule(this.newS.moveToNextRoad);
+            this.newS.schedule(this.newS.moveToNextRoad_slow,100);
             this.pus.show(this.pus, function(){
                 console.log('弹窗打开了');
             });
-
         }, this );
         set.x = cc.winSize.width * 0.86;
         set.y = cc.winSize.height * 0.93;
@@ -527,6 +562,8 @@ var MainLayer = cc.Layer.extend({
 
         //继续游戏
         var continueItem = new cc.MenuItemImage(res.ContinueNormal_png,res.ContinueSelected_png, function () {
+            this.newS.unschedule(this.newS.moveToNextRoad_slow);
+            this.newS.schedule(this.newS.moveToNextRoad,0.5);
             this.pus.hidden(this.pus, function(){
                 console.log('通过导演恢复场景');
                 // cc.director.runScene(new LevelScene());
@@ -537,6 +574,7 @@ var MainLayer = cc.Layer.extend({
         var repeatItem = new cc.MenuItemImage(res.RepeatNormal_png,res.RepeatSelected_png, function () {
             this.pus.hidden(this.pus, function(){
                 // console.log('跳转到游戏开始界面');
+                //this.newS.clearArray();
                 cc.director.runScene(new MainScene());
             });
         }, this);
@@ -591,6 +629,7 @@ var MainLayer = cc.Layer.extend({
         //重新开始按钮
         var repeatItem = new cc.MenuItemImage(res.RepeatNormal_png,res.RepeatSelected_png, function () {
             this.overpus.hidden(this.overpus, function(){
+                cc.director.runScene(new MainScene());
                 console.log('跳转到游戏开始界面');
             });
         }, this);
