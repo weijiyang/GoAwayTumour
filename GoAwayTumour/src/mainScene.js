@@ -171,6 +171,8 @@ var MainLayer = cc.Layer.extend({
         }, this);
 
         var speedToggle = new cc.MenuItemToggle(speed0Item,speed1Item,function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             speedToggle.getSelectedIndex();
             if(speedToggle.getSelectedIndex()==1){
                 this.newS.unschedule(this.newS.moveToNextRoad);
@@ -454,6 +456,8 @@ var MainLayer = cc.Layer.extend({
         }, this);
 
         var pauseToggle = new cc.MenuItemToggle(pause0Item,pause1Item,function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //this.newS.unschedule(this.newS.moveToNextRoad);
             cc.director.pause();
             pauseToggle.getSelectedIndex();
@@ -470,6 +474,8 @@ var MainLayer = cc.Layer.extend({
 
         // bnt.setScale(2);
         var set = new cc.MenuItemImage( res.menu_png, res.menu_png, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //显示弹窗。function为回调函数，弹窗完全展示后回调
             this.newS.unschedule(this.newS.moveToNextRoad);
             this.newS.schedule(this.newS.moveToNextRoad_slow,100);
@@ -553,6 +559,8 @@ var MainLayer = cc.Layer.extend({
 
         //重新选关
         var selectItem = new cc.MenuItemImage(res.SelectNormal_png,res.SelectSelected_png, function () {
+            //王凯名 添加了音效判断2016/12/8
+            //EffectEngine.playEffect(res.Select);
             //关闭弹窗。function为回调函数，弹窗完全关闭后回调
             this.pus.hidden(this.pus, function(){
                 // console.log('跳转到选关界面');
@@ -562,6 +570,8 @@ var MainLayer = cc.Layer.extend({
 
         //继续游戏
         var continueItem = new cc.MenuItemImage(res.ContinueNormal_png,res.ContinueSelected_png, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             this.newS.unschedule(this.newS.moveToNextRoad_slow);
             this.newS.schedule(this.newS.moveToNextRoad,0.5);
             this.pus.hidden(this.pus, function(){
@@ -572,6 +582,8 @@ var MainLayer = cc.Layer.extend({
 
         //重新开始
         var repeatItem = new cc.MenuItemImage(res.RepeatNormal_png,res.RepeatSelected_png, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             this.pus.hidden(this.pus, function(){
                 // console.log('跳转到游戏开始界面');
                 //this.newS.clearArray();
@@ -628,6 +640,8 @@ var MainLayer = cc.Layer.extend({
 
         //重新开始按钮
         var repeatItem = new cc.MenuItemImage(res.RepeatNormal_png,res.RepeatSelected_png, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             this.overpus.hidden(this.overpus, function(){
                 cc.director.runScene(new MainScene());
                 console.log('跳转到游戏开始界面');
@@ -707,3 +721,11 @@ var MainScene = cc.Scene.extend({
     }
 });
 
+//获取音效设置 王凯名
+var EffectEngine = function(){};
+EffectEngine.playEffect = function(url){
+    if (cc.sys.localStorage.getItem("isEffectOn") == "YES") {
+        cc.audioEngine.playEffect(url);
+        cc.log("1");
+    }
+};

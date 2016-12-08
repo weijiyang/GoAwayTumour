@@ -22,6 +22,10 @@ var myChoose = cc.Sprite.extend({
                  var frame = cc.rect(0,0,targetSize.width,targetSize.height);
                  if(cc.rectContainsPoint(target.getBoundingBox(),location)){
                      //cc.log("点击关卡");
+                     //王凯名 添加了音效判断2016/12/8
+                     if (ls.getItem("isEffectOn") == "YES") {
+                         cc.audioEngine.playEffect(res.Select);
+                     }
                     cc.director.runScene(new MainScene());
                  return true;
                  }

@@ -13,6 +13,8 @@ var TumourDetailLayer = cc.Layer.extend({
 
         //返回按钮
         var press= new cc.MenuItemImage(res.pressed, res.pressed2, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //详情介绍接口
             // cc.log("显示详情");
             cc.director.runScene(new IntroductionScene());
@@ -283,3 +285,11 @@ var TumourDetailScene = cc.Scene.extend({
     }
 });
 
+//获取音效设置 王凯名
+var EffectEngine = function(){};
+EffectEngine.playEffect = function(url){
+    if (cc.sys.localStorage.getItem("isEffectOn") == "YES") {
+        cc.audioEngine.playEffect(url);
+        cc.log("1");
+    }
+};

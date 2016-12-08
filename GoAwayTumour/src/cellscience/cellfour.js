@@ -20,6 +20,8 @@ var CellfourLayer = cc.Layer.extend({
 
         //返回按钮
         var press= new cc.MenuItemImage(res.pressed, res.pressed2, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //详情介绍接口
             // cc.log("显示详情");
             cc.director.runScene(new CellDetailScene());
@@ -30,7 +32,6 @@ var CellfourLayer = cc.Layer.extend({
         menu0.x = 0;
         menu0.y = 0;
         pokedexbg.addChild(menu0);
-
 
         return true;
     }

@@ -21,6 +21,8 @@ var CellDetailLayer = cc.Layer.extend({
 
         //返回按钮
         var press= new cc.MenuItemImage(res.pressed, res.pressed2, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //详情介绍接口
             // cc.log("显示详情");
             cc.director.runScene(new IntroductionScene());
@@ -64,7 +66,6 @@ var CellDetailLayer = cc.Layer.extend({
         blackboard.y=celldisplay2.height*0.023;
         celldisplay2.addChild(blackboard);
 
-
         //点击左边，右边显示细胞文字描述
         var title1 = new cc.LabelTTF("淋巴细胞");
         title1.setFontSize(size.width*0.038);
@@ -102,6 +103,8 @@ var CellDetailLayer = cc.Layer.extend({
         blackboard.addChild(title5);*/
 
         var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //返回初次场景
             cc.director.runScene(new CelloneScene());
         },this);
@@ -170,6 +173,8 @@ var CellDetailLayer = cc.Layer.extend({
 
             //点我学习
             var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //王凯名 添加了音效判断2016/12/8
+                EffectEngine.playEffect(res.Select);
                 //返回初次场景
                 cc.director.runScene(new CelloneScene());
             },this);
@@ -196,6 +201,8 @@ var CellDetailLayer = cc.Layer.extend({
             title4.setString("攻击速度：2");
             //点我学习
             var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //王凯名 添加了音效判断2016/12/8
+                EffectEngine.playEffect(res.Select);
                 //返回初次场景
                 cc.director.runScene(new CelltwoScene());
             },this);
@@ -223,6 +230,8 @@ var CellDetailLayer = cc.Layer.extend({
 
             //点我学习
             var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //王凯名 添加了音效判断2016/12/8
+                EffectEngine.playEffect(res.Select);
                 //返回初次场景
                 cc.director.runScene(new CellthreeScene());
             },this);
@@ -250,6 +259,8 @@ var CellDetailLayer = cc.Layer.extend({
 
             //点我学习
             var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //王凯名 添加了音效判断2016/12/8
+                EffectEngine.playEffect(res.Select);
                 //返回初次场景
                 cc.director.runScene(new CellfourScene());
             },this);
@@ -276,6 +287,8 @@ var CellDetailLayer = cc.Layer.extend({
 
             //点我学习
             var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //王凯名 添加了音效判断2016/12/8
+                EffectEngine.playEffect(res.Select);
                 //返回初次场景
                 cc.director.runScene(new CellfiveScene());
             },this);
@@ -303,6 +316,8 @@ var CellDetailLayer = cc.Layer.extend({
 
             //点我学习
             var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //王凯名 添加了音效判断2016/12/8
+                EffectEngine.playEffect(res.Select);
                 //返回初次场景
                 cc.director.runScene(new CellsixScene());
             },this);
@@ -330,6 +345,8 @@ var CellDetailLayer = cc.Layer.extend({
 
             //点我学习
             var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //王凯名 添加了音效判断2016/12/8
+                EffectEngine.playEffect(res.Select);
                 //返回初次场景
                 cc.director.runScene(new CellsevenScene());
             },this);
@@ -360,3 +377,11 @@ var CellDetailScene = cc.Scene.extend({
     }
 });
 
+//获取音效设置 王凯名
+var EffectEngine = function(){};
+EffectEngine.playEffect = function(url){
+    if (cc.sys.localStorage.getItem("isEffectOn") == "YES") {
+        cc.audioEngine.playEffect(url);
+        cc.log("1");
+    }
+};

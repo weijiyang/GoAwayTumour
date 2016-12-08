@@ -4,6 +4,7 @@ var LevelLayer = cc.Layer.extend({
     ctor:function () {
         this._super();
         var size = cc.winSize;
+        ls=cc.sys.localStorage;
         this.initsetTc();
         //添加背景图片
         var bg = new cc.Sprite(res.stage_map_0);
@@ -32,7 +33,9 @@ var LevelLayer = cc.Layer.extend({
         //添加按钮
         var homeItem = new cc.MenuItemImage(res.stagemap_toolbar_home,res.stagemap_toolbar_home2,function(){
             cc.log("返回主页");
-            cc.audioEngine.playEffect(res.Select);
+            if (ls.getItem("isEffectOn") == "YES") {
+                cc.audioEngine.playEffect(res.Select);
+            }
             cc.director.runScene(new StartScene());
         },this);
         var homeMenu = new cc.Menu(homeItem);
@@ -40,7 +43,9 @@ var LevelLayer = cc.Layer.extend({
         homeMenu.y = tool_leftbg.height*0.56;
         tool_leftbg.addChild(homeMenu,2);
         var storeItem = new cc.MenuItemImage(res.stagemap_toolbar_shop,res.stagemap_toolbar_shop2,function(){
-            cc.audioEngine.playEffect(res.Select);
+            if (ls.getItem("isEffectOn") == "YES") {
+                cc.audioEngine.playEffect(res.Select);
+            }
             cc.log("进入商店");
         },this);
         var storeMenu = new cc.Menu(storeItem);
@@ -49,7 +54,9 @@ var LevelLayer = cc.Layer.extend({
         tool_leftbg.addChild(storeMenu,2);
         var picItem = new cc.MenuItemImage(res.stagemap_toolbar_leaderboard,res.stagemap_toolbar_leaderboard2,function(){
             cc.log("排行榜/图鉴");
-            cc.audioEngine.playEffect(res.Select);
+            if (ls.getItem("isEffectOn") == "YES") {
+                cc.audioEngine.playEffect(res.Select);
+            }
             cc.director.runScene(new IntroductionScene());
         },this);
         var picMenu = new cc.Menu(picItem);
@@ -58,7 +65,9 @@ var LevelLayer = cc.Layer.extend({
         tool_leftbg.addChild(picMenu,2);
         var settingItem = new cc.MenuItemImage(res.stagepoint_chance,res.stagepoint_chance2,function(){
             // cc.log("设置");
-            cc.audioEngine.playEffect(res.Select);
+            if (ls.getItem("isEffectOn") == "YES") {
+                cc.audioEngine.playEffect(res.Select);
+            }
             this.pus.show(this.pus, function(){
                 console.log('弹窗打开了');
             });
@@ -141,7 +150,6 @@ var LevelLayer = cc.Layer.extend({
             ls.setItem("isMusicOn", "YES");
             ls.setItem("isEffectOn", "YES");
         }
-
         //背景框
         var bg = new cc.Sprite(res.Mainscene_png);
         bg.x = cc.winSize.width/2;
@@ -207,13 +215,17 @@ var LevelLayer = cc.Layer.extend({
             ls.setItem("isEffectOn", toggleMenuItem2.getSelectedIndex() == 0 ? "YES" : "NO");
             if (ls.getItem("isEffectOn") == "YES") {
                 cc.audioEngine.playEffect(res.Select);
+            }else{
+                cc.audioEngine.stopEffect();
             }
         }, this);
 
         if (ls.getItem("isEffectOn") == "YES") {
             toggleMenuItem2.setSelectedIndex(0);
+            cc.audioEngine.playEffect(res.Select);
         } else {
             toggleMenuItem2.setSelectedIndex(1);
+            cc.audioEngine.stopEffect();
         }
 
         //菜单
@@ -235,6 +247,7 @@ var LevelLayer = cc.Layer.extend({
          */
         this.pus = new Popups(layer, false, true);
         this.addChild(this.pus);
+        return ls.getItem("isEffectOn");
     }
 });
 

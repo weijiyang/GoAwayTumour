@@ -45,6 +45,8 @@ var IntroductionLayer = cc.Layer.extend({
 
         //细胞
         var cellItem = new cc.MenuItemImage(res.pokecell,res.pokecell2, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //细胞详情页接口
             cc.director.runScene(new CellDetailScene());
         }, this);
@@ -56,6 +58,8 @@ var IntroductionLayer = cc.Layer.extend({
 
         //肿瘤
         var tumourItem = new cc.MenuItemImage(res.poketumour,res.poketumour2, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //肿瘤详情页接口
             cc.director.runScene(new TumourDetailScene());
         }, this);
@@ -67,6 +71,8 @@ var IntroductionLayer = cc.Layer.extend({
 
         //查看细胞按钮
         var cellbtnItem = new cc.MenuItemImage(res.pokecellbtn, res.pokecellbtn2,function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //细胞详情页接口
             cc.director.runScene(new CellDetailScene());
         }, this);
@@ -79,6 +85,8 @@ var IntroductionLayer = cc.Layer.extend({
 
         //查看肿瘤按钮
         var tumourbtnItem = new cc.MenuItemImage(res.poketumourbtn,res.poketumourbtn2, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //肿瘤详情页接口
             cc.director.runScene(new TumourDetailScene());
         }, this);
@@ -89,6 +97,8 @@ var IntroductionLayer = cc.Layer.extend({
 
         //返回按钮
         var press= new cc.MenuItemImage(res.pressed, res.pressed2, function () {
+            //王凯名 添加了音效判断2016/12/8
+            EffectEngine.playEffect(res.Select);
             //详情介绍接口
             // cc.log("显示详情");
             cc.director.runScene(new LevelScene());
@@ -123,3 +133,11 @@ var IntroductionScene = cc.Scene.extend({
     }
 });
 
+//获取音效设置 王凯名
+var EffectEngine = function(){};
+EffectEngine.playEffect = function(url){
+    if (cc.sys.localStorage.getItem("isEffectOn") == "YES") {
+        cc.audioEngine.playEffect(url);
+        cc.log("1");
+    }
+};
