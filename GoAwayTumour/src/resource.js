@@ -1,4 +1,14 @@
 var res = {
+    //魏继阳
+    Level:"res/mainScene/level.jpg",
+    Level_up:"res/mainScene/up.png",
+    Level_close:"res/mainScene/close.png",
+    Cell:"res/mainScene/cell.png",
+    Level_up_down:"res/mainScene/up_down.png",
+    Level_close_down:"res/mainScene/close_down.png",
+    Cell_1:"res/mainScene/cell_1.png",
+    Cell_2:"res/mainScene/cell_2.png",
+    Cell_3:"res/mainScene/cell_3.png",
     //郑蕊
     startbg : "res/StartImages/startbg.png",
     startbtn : "res/StartImages/startbtn.png",
@@ -17,6 +27,24 @@ var res = {
     pokereturnbtn : "res/PokedexImages/returnbutton.png",
     display1:"res/PokedexImages/display1.jpg",
     display2:"res/PokedexImages/display2.jpg",
+    science11:"res/CellImages/sciencebg1.png",
+    science12:"res/CellImages/sciencebg1.png",
+    science21:"res/CellImages/sciencebg2.png",
+    science22:"res/CellImages/sciencebg2.png",
+    cellsciencebg1:"res/cellscience/lymphocyte.png",
+    cellsciencebg2:"res/cellscience/granulocyte.png",
+    cellsciencebg3:"res/cellscience/erythrocyte.png",
+    cellsciencebg4:"res/cellscience/phagocyte.png",
+    cellsciencebg5:"res/cellscience/NKcell.png",
+    cellsciencebg6:"res/cellscience/epicyte.png",
+    cellsciencebg7:"res/cellscience/phlogocyte.png",
+    tumoursciencebg1:"res/tumourscience/bacillusproteus.png",//变形杆菌
+    tumoursciencebg2:"res/tumourscience/cancercell.png",//癌细胞
+    tumoursciencebg3:"res/tumourscience/colibacillus.png",//大肠杆菌
+    tumoursciencebg4:"res/tumourscience/spirochete.png",//螺旋菌
+    tumoursciencebg5:"res/tumourscience/staphylococcus.png",//葡萄球菌
+    tumoursciencebg6:"res/tumourscience/streptococcus.png",//链球菌
+    tumoursciencebg7:"res/tumourscience/virus.png",//病毒
     /*    celldisplay:"res/CellImages/celldisplay.png",
      cellgrid:"res/CellImages/cellgrid.png",*/
     //崔迎春
@@ -45,6 +73,8 @@ var res = {
     //音乐与音效
     Bg_mp3:"res/music/background.mp3",
     Click_mp3:"res/music/click.mp3",
+    BgMusic:"res/music/BGMusic.mp3",
+    Select:"res/music/Select.mp3",
     //细胞部分:郑蕊和王凯名
     /*    XiBao3_png : "res/celldetailScene/xibao3.png",
      XiBao32_png : "res/celldetailScene/xibao3_2.png",*/
@@ -82,14 +112,24 @@ var res = {
     tumour72:"res/TumourImages/tumour7_2.png",
     //曹阳
     // BackgoundImage:"res/mainScene/background.png",
-    BGS:"res/mainScene/1.tmx",
+    BGS:"res/mainScene/9.tmx",
     plus:"res/mainScene/play/select_01.png",
+    cell1_png:"res/mainScene/play/Tower/cell1.png",
+    cell2_png:"res/mainScene/play/Tower/cell2.png",
     minus:"res/mainScene/play/warning.png",
     BackgoundImage:"res/mainScene/1.png",
     pressed:"res/CellImages/share_setting_pressed.png",
     pressed2:"res/CellImages/share_setting_pressed_2.png",
     //张东杰
+    blood:"res/mainScene/blood.png",
+    bloodBar:"res/mainScene/bloodBar.png",
     HelloWorld_png : "res/HelloWorld.png",
+    topBg_png:"res/mainScene/top_bg.png",
+    wavesBg_png:"res/mainScene/waves_bg.png",
+    abc0_png:"res/mainScene/abc0.png",
+    abc1_png:"res/mainScene/abc1.png",
+    speed0_png:"res/mainScene/speed_0.png",
+    speed1_png:"res/mainScene/speed_1.png",
     Tan_png : "res/mainScene/tan.png",
     bnt : 'res/mainScene/bnt.png',
     pause_0 : 'res/mainScene/pause_0.png',

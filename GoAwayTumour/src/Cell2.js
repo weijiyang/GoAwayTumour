@@ -1,15 +1,15 @@
-var Bottle = TowerBase.extend({
+var Cell2 = TowerBase.extend({
     ctor : function(data){
         this._super("#Bottle_3.png", data);
         // 0.5 秒开火一次
         this.schedule(this.onRotateAndFire, 0.5);
     },
     loadWeapon : function(){
-        var node = new MyCell("#Bottle31.png");
+        var node = new MyCell(res.cell2_png);
         this.addChild(node);
         this.weapon = node;
         node.setPosition(this.width / 2, this.height / 2);
-        // node.setRotation(270);
+        // node.setRotation(90);
     },
     // 旋转并开火
     onRotateAndFire : function(){
@@ -54,7 +54,7 @@ var Bottle = TowerBase.extend({
         currBullet.runAction(action);
     },
     createBullet : function(){
-        var node = new cc.Sprite("#PBottle31.png");
+        var node = new cc.Sprite(res.cell2_png);
         node.setPosition(this.getPosition());
         node.setRotation(this.weapon.getRotation());
         return node;

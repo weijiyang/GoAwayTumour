@@ -26,6 +26,7 @@ var StartLayer = cc.Layer.extend({
         //开始游戏按钮
         var startItem = new cc.MenuItemImage(res.startbtn,res.startbtn2,function () {
             //进入选关页面接口
+            cc.audioEngine.playEffect(res.Select);
             cc.director.runScene(new LevelScene());
         }, this);
         var menu1 = new cc.Menu(startItem);
@@ -36,6 +37,7 @@ var StartLayer = cc.Layer.extend({
         var aboutUsItem = new cc.MenuItemImage( res.aboutusbtn, res.aboutusbtn2, function () {
             //显示弹窗。function为回调函数，弹窗完全展示后回调
             this.pus.show(this.pus, function(){
+                cc.audioEngine.playEffect(res.Select);
                 console.log('关于我们弹窗打开了');
             });
         }, this );

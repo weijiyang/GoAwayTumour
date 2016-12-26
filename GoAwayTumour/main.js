@@ -63,17 +63,18 @@ cc.game.onStart = function(){
     cc.view.adjustViewPort(true);
 
     // Uncomment the following line to set a fixed orientation for your game
-    // cc.view.setOrientation(cc.ORIENTATION_PORTRAIT);
+    cc.view.setOrientation(cc.ORIENTATION_LANDSCAPE_LEFT);
 
     // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(1136, 640, cc.ResolutionPolicy.FIXED_HEIGHT);
+    // cc.view.setDesignResolutionSize(1136, 640, cc.ResolutionPolicy.FIXED_HEIGHT);
+    cc.view.setDesignResolutionSize(1136, 640, cc.ResolutionPolicy.SHOW_ALL);
 
     // The game will be resized when browser size change
     cc.view.resizeWithBrowserSize(true);
 
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new StartScene ());
+        cc.director.runScene(new MainScene ());
     }, this);
 };
 cc.game.run();
