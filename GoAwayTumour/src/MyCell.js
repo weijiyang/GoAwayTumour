@@ -18,7 +18,7 @@ var MyCell =  cc.Sprite.extend({
             event:cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches:true,
             onTouchBegan: function (touch, event) {
-                console.log("ontouchbegin");
+                // console.log("ontouchbegin");
                 var location = touch.getLocation();
                 var target = event.getCurrentTarget();
                 if(cc.rectContainsPoint(target.getBoundingBox(),location)){

@@ -38,6 +38,13 @@ var res = {
     cellsciencebg5:"res/cellscience/NKcell.png",
     cellsciencebg6:"res/cellscience/epicyte.png",
     cellsciencebg7:"res/cellscience/phlogocyte.png",
+    tumoursciencebg1:"res/tumourscience/bacillusproteus.png",//变形杆菌
+    tumoursciencebg2:"res/tumourscience/cancercell.png",//癌细胞
+    tumoursciencebg3:"res/tumourscience/colibacillus.png",//大肠杆菌
+    tumoursciencebg4:"res/tumourscience/spirochete.png",//螺旋菌
+    tumoursciencebg5:"res/tumourscience/staphylococcus.png",//葡萄球菌
+    tumoursciencebg6:"res/tumourscience/streptococcus.png",//链球菌
+    tumoursciencebg7:"res/tumourscience/virus.png",//病毒
     /*    celldisplay:"res/CellImages/celldisplay.png",
      cellgrid:"res/CellImages/cellgrid.png",*/
     //崔迎春

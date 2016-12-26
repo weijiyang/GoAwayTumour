@@ -39,6 +39,13 @@
         "src/cellscience/cellfour.js",
         "src/cellscience/cellfive.js",
         "src/cellscience/cellsix.js",
-        "src/cellscience/cellseven.js"
+        "src/cellscience/cellseven.js",
+        "src/tumourscience/tumourone.js",
+        "src/tumourscience/tumourtwo.js",
+        "src/tumourscience/tumourthree.js",
+        "src/tumourscience/tumourfour.js",
+        "src/tumourscience/tumourfive.js",
+        "src/tumourscience/tumoursix.js",
+        "src/tumourscience/tumourseven.js"
     ]
 }

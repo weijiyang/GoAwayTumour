@@ -5,11 +5,11 @@ var Bottle = TowerBase.extend({
         this.schedule(this.onRotateAndFire, 0.5);
     },
     loadWeapon : function(){
-        var node = new cc.Sprite("#Bottle31.png");
+        var node = new MyCell("#Bottle31.png");
         this.addChild(node);
         this.weapon = node;
         node.setPosition(this.width / 2, this.height / 2);
-        node.setRotation(90);
+        // node.setRotation(270);
     },
     // 旋转并开火
     onRotateAndFire : function(){

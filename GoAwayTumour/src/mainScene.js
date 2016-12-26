@@ -43,7 +43,7 @@ var MainLayer = cc.Layer.extend({
         this.registerEvent();
         this.showTopBg();
         this.initBnt();
-       // this.animation();
+
 
         var newCell = new MyCell(res.Cell_1);
         newCell.x = cc.winSize.width/2;
@@ -89,17 +89,21 @@ var MainLayer = cc.Layer.extend({
                 // cc.log("ccc");
                 // 没有触摸到地图区域内
                 if (!result.isInMap) {
+                    cc.log("没有在地图内");
                     self.loadTouchWarning(touch.getLocation().x, touch.getLocation().y);
                     // cc.log(this.tiledMapRectArray.length);
-                }else {
+                }else if( 9 - result.row == 1 || 9 - result.row == 0 || 9 - result.row == 9 || result.cel == 0 || result.cel == 16){
+                    cc.log("不可操作");
+                }else{
+/*                    cc.log(result.row);
+                    cc.log(result.cel);
+                    cc.log(self.tiledMapRectArrayMap[9-result.row][result.cel]);*/
                     // 已经有塔或者障碍物
-                    if (self.tiledMapRectArrayMap[result.row][result.cel] != self.tiledMapRectMapEnemu.NONE) {
-                        cc.log(self.tiledMapRectArrayMap[result.row][result.cel]);
+                    if (self.tiledMapRectArrayMap[9 - result.row][result.cel] != self.tiledMapRectMapEnemu.NONE) {
                         self.loadTouchWarning(result.x + self.tileSize.width / 2, result.y + self.tileSize.height / 2);
                     }else{
                         // 当前位置没有塔和障碍物
                         if (self.towerPanel == null) {
-                            // cc.log("bbb");
                             self.loadTowerPanel({
                                 cel : result.cel,
                                 row : result.row,
@@ -116,30 +120,16 @@ var MainLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(listener,this);
         this.listener = listener;
-/*        this.createTower();
-        this.onCreateTower();*/
-        // this.removeTowerPanel();
         this.schedule(this.collision,0.5);
     },
-    // animation:function(){
-    //     var animation = new cc.Animation();
-    //     for (var i = 0; i < 2; i++) {
-    //         var frameName = "res/mainScene/abc" + i + ".png";
-    //         animation.addSpriteFrameWithFile(frameName);
-    //     }
-    //     animation.setDelayPerUnit(1 / 30);
-    //     animation.setRestoreOriginalFrame(true);
-    //     var animateAction = cc.animate(animation);
-    //     this.newS.runAction(cc.repeatForever(animateAction));
-    // },
     collision:function () {
-        that =this;
-        if(cc.rectContainsPoint(this.pro.getBoundingBox(),this.newS.getPosition())){
-            this.overpus.show(this.overpus, function(){
-                that.unschedule(that.collision);
-                console.log('游戏失败了');
-            });
-        }
+        // that =this;
+        // if(cc.rectContainsPoint(this.pro.getBoundingBox(),this.newS.getPosition())){
+        //     this.overpus.show(this.overpus, function(){
+        //         that.unschedule(that.collision);
+        //         console.log('游戏失败了');
+        //     });
+        // }
     },
     showTopBg:function(){
         var topBg = new cc.Sprite(res.topBg_png);
@@ -171,8 +161,6 @@ var MainLayer = cc.Layer.extend({
         }, this);
 
         var speedToggle = new cc.MenuItemToggle(speed0Item,speed1Item,function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             speedToggle.getSelectedIndex();
             if(speedToggle.getSelectedIndex()==1){
                 this.newS.unschedule(this.newS.moveToNextRoad);
@@ -188,6 +176,26 @@ var MainLayer = cc.Layer.extend({
         speedMenu.x = cc.winSize.width*0.7;
         speedMenu.y = cc.winSize.height*0.93;
         this.addChild(speedMenu);
+
+        var pause0Item = new cc.MenuItemImage(res.pause_0,res.pause_0, function () {
+        }, this);
+        var pause1Item = new cc.MenuItemImage(res.pause_1,res.pause_1, function () {
+        }, this);
+
+        var pauseToggle = new cc.MenuItemToggle(pause0Item,pause1Item,function () {
+            //this.newS.unschedule(this.newS.moveToNextRoad);
+            cc.director.pause();
+            pauseToggle.getSelectedIndex();
+            cc.log(pauseToggle.getSelectedIndex());
+            if(pauseToggle.getSelectedIndex()==0){
+                cc.director.resume();
+            }
+        },this);
+
+        var pauseMenu = new cc.Menu(pauseToggle);
+        pauseMenu.x = cc.winSize.width*0.8;
+        pauseMenu.y = cc.winSize.height*0.93;
+        this.addChild(pauseMenu);
     },
     onExit:function() {
         this._super();
@@ -217,10 +225,10 @@ var MainLayer = cc.Layer.extend({
             groupName = group.getGroupName();
 
             // 大障碍物[占4格]
-            if (groupName == "big") {
-                finalOffsetX = offsetX;
+            if (groupName == "block") {
+               finalOffsetX = offsetX;
                 finalOffsetY = offsetY;
-            }
+ /*        }
             // 中等障碍物[占用左右2格]
             else if (groupName == "little"){
                 finalOffsetX = offsetX;
@@ -230,7 +238,7 @@ var MainLayer = cc.Layer.extend({
                 || groupName == "start_end"
                 || groupName == "invalid") {
                 finalOffsetX = offsetX + this.tileSize.width / 2;
-                finalOffsetY = offsetY + this.tileSize.height / 2;
+                finalOffsetY = offsetY + this.tileSize.height / 2;*/
             }else{
                 cc.warn("GPMainLayer.loadTiledMap(): " + groupName + "对象组的坐标未调整");
             }
@@ -250,12 +258,6 @@ var MainLayer = cc.Layer.extend({
             for (var j = 0; j < mapSize.width; j++) {
                 // 空地
                 this.tiledMapRectArray[i][j] = cc.rect(nextPosX - this.tileSize.width / 2, nextPosY - this.tileSize.height / 2, this.tileSize.width, this.tileSize.height);
-                //node = new cc.Sprite();
-                //this.addChild(node, 200);
-                //node.setTextureRect(cc.rect(0, 0, tileSize.width - 2, tileSize.height - 2));
-                //node.setColor(cc.color(122, 122, 255));
-                //node.setPosition(nextPosX, nextPosY);
-                //node.setOpacity(120);
                 nextPosX += this.tileSize.width;
             }
 
@@ -265,23 +267,25 @@ var MainLayer = cc.Layer.extend({
     },
     // 加载[瓦片地图区域映射]
     loadTiledMapRectArrayMap : function(){
-        var i;
         var mapSize = this.tiledMap.getMapSize();
-        var bgLayer = this.tiledMap.getLayer("bg");     //.getLayer("bg");
+        var bgLayer = this.tiledMap.getLayer("bg");
         var tileGID =null;
         var properties =null;
-        for (i = 0; i < mapSize.height; i++) {
+        for (var i = 0; i < mapSize.height; i++) {
             this.tiledMapRectArrayMap[i] = [];
             for (var j = 0; j < mapSize.width; j++) {
-                tileGID=bgLayer.getTileGIDAt(cc.p(i,j),0);
+                tileGID=bgLayer.getTileGIDAt(cc.p(j,i));
                 properties=this.tiledMap.getPropertiesForGID(tileGID);
-                cc.log(properties.type);
-                if("block" != properties.type){
-                    this.tiledMapRectArrayMap[i][j] = this.tiledMapRectMapEnemu.BLOCK;
+                // cc.log(properties.type);
+                if("ground" != properties.type){
+                    if("road" == properties.type){
+                        this.tiledMapRectArrayMap[i][j] = this.tiledMapRectMapEnemu.ROAD;
+                    }else{
+                        this.tiledMapRectArrayMap[i][j] = this.tiledMapRectMapEnemu.BLOCK;
+                    }
                 }else{
                     this.tiledMapRectArrayMap[i][j] = this.tiledMapRectMapEnemu.NONE;
                 }
-                // cc.log("地图区域映射加载完成");
             }
         }
     },
@@ -326,10 +330,7 @@ var MainLayer = cc.Layer.extend({
 
         this.tiledMapRectMapEnemu.NONE      = "ground";    // 空地  0
         this.tiledMapRectMapEnemu.ROAD      = "road";    // 道路  1
-        this.tiledMapRectMapEnemu.SMALL     = "block";    //  2  小障碍物[占1格]
-        this.tiledMapRectMapEnemu.LITTLE    = 3;    // 中障碍物[占2格]
-        this.tiledMapRectMapEnemu.BIG       = 4;    // 大障碍物[占4格]
-        this.tiledMapRectMapEnemu.INVALID   = 5;    // 无效区域
+        this.tiledMapRectMapEnemu.BLOCK     = "block";    //  2  小障碍物[占1格]
         this.tiledMapRectMapEnemu.TOWER     = "tower";    // 塔
 
     },
@@ -369,6 +370,8 @@ var MainLayer = cc.Layer.extend({
 
         // 工厂模式
         var node = self.createTower(data);
+        node.x = data.x;
+        node.y = data.y;
         self.addChild(node);
 
         self.removeTowerPanel();
@@ -394,7 +397,6 @@ var MainLayer = cc.Layer.extend({
                     index.x = rect.x;
                     index.y = rect.y;
                     isInMap = true;
-                    //cc.log("GPMainLayer.getInfoFromMapByPos() : rect is ", rect);
                 }
             }
         }
@@ -412,28 +414,28 @@ var MainLayer = cc.Layer.extend({
         cc.assert(data.name, "GPMainLayer.createTower(): 名字无效！");
         cc.assert(data.x, "GPMainLayer.createTower(): X轴坐标无效！");
         cc.assert(data.y, "GPMainLayer.createTower(): Y轴坐标无效！");
-
+        var mapSize = this.tiledMap.getMapSize();
         var towerData = {};
         towerData.name = data.name;
         towerData.x = data.x;
         towerData.y = data.y;
-
+cc.log(data);
         var node = null;
         switch (data.name){
             case "Bottle":
                 towerData.scope = 300;
                 towerData.bulletSpeed = 40;
-                node = new Bottle(towerData);
+                node = new MyCell("res/mainScene/cell_1.png");
                 break;
             case "Cell1":
                 towerData.scope = 300;
                 towerData.bulletSpeed = 40;
-                node = new Cell1(towerData);
+                node = new MyCell(res.cell1_png);
                 break;
             case "Cell2":
                 towerData.scope = 300;
                 towerData.bulletSpeed = 40;
-                node = new Cell2(towerData);
+                node = new  MyCell(res.cell2_png);
                 break;
             default :
                 cc.warn("GPMainLayer.createTower() : 异常");
@@ -442,67 +444,29 @@ var MainLayer = cc.Layer.extend({
 
         // 属性设置
         if (node != null) {
-            // 标记当前位置有塔
-            this.tiledMapRectArrayMap[data.row][data.cel] = this.tiledMapRectMapEnemu.TOWER;
+
         }
 
         return node;
     },
     initBnt : function()
     {
-        var pause0Item = new cc.MenuItemImage(res.pause_0,res.pause_0, function () {
-        }, this);
-        var pause1Item = new cc.MenuItemImage(res.pause_1,res.pause_1, function () {
-        }, this);
 
-        var pauseToggle = new cc.MenuItemToggle(pause0Item,pause1Item,function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
-            //this.newS.unschedule(this.newS.moveToNextRoad);
-            cc.director.pause();
-            pauseToggle.getSelectedIndex();
-            cc.log(pauseToggle.getSelectedIndex());
-            if(pauseToggle.getSelectedIndex()==0){
-                cc.director.resume();
-            }
-        },this);
-
-        var pauseMenu = new cc.Menu(pauseToggle);
-        pauseMenu.x = cc.winSize.width*0.8;
-        pauseMenu.y = cc.winSize.height*0.93;
-        this.addChild(pauseMenu);
 
         // bnt.setScale(2);
         var set = new cc.MenuItemImage( res.menu_png, res.menu_png, function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             //显示弹窗。function为回调函数，弹窗完全展示后回调
             this.newS.unschedule(this.newS.moveToNextRoad);
+            this.newS.unschedule(this.newS.moveToNextRoad_fast);
             this.newS.schedule(this.newS.moveToNextRoad_slow,100);
+            cc.director.resume();
             this.pus.show(this.pus, function(){
                 console.log('弹窗打开了');
             });
         }, this );
         set.x = cc.winSize.width * 0.86;
         set.y = cc.winSize.height * 0.93;
-        // bnt1.setScale(2);
-        // var OverLabel = new cc.LabelTTF("游戏失败");
-        // OverLabel.setFontSize(cc.winSize.width / 8);
-        // OverLabel.setFontFillColor(cc.color.BLACK);
-        // OverLabel.enableStroke(cc.color.YELLOW, 5);
-        /*var over = new cc.MenuItemFont( "游戏失败", function () {
-
-            //显示弹窗。function为回调函数，弹窗完全展示后回调
-            this.overpus.show(this.overpus, function(){
-                console.log('游戏失败了');
-            });
-
-        }, this );
-
-        over.x = cc.winSize.width * 0.8;
-        over.y = cc.winSize.height * 0.4;
-
-
+        /*
         var win = new cc.MenuItemFont( "闯关成功", function () {
 
             //显示弹窗。function为回调函数，弹窗完全展示后回调
@@ -517,7 +481,6 @@ var MainLayer = cc.Layer.extend({
         var menu = new cc.Menu(set);
         menu.x = 0;
         menu.y = 0;
-        // menu.setFontFillColor(cc.color.BLACK);
         this.addChild(menu);
     },
     initTc : function()
@@ -525,29 +488,7 @@ var MainLayer = cc.Layer.extend({
         var size = cc.winSize;
         //1、创建一个layer用于存放弹窗，layer的宽和高等于弹窗图片的大小
         var layer = new cc.LayerColor(cc.color(0,0,0,0), 750, 427);
-        // layer.x = 400 - (layer.width/2);
-        // layer.y = 640 - (layer.height/2);
-        /*		//2、创建弹窗图片
-         var tc = new cc.Sprite('res/tc.png');
-         tc.x = layer.width / 2;
-         tc.y = layer.height / 2;
-         layer.addChild(tc);
 
-         //3、弹窗的按钮
-         var bnt = new cc.MenuItemImage( 'res/bnt.png', 'res/bnt.png', function () {
-
-         //关闭弹窗。function为回调函数，弹窗完全关闭后回调
-         this.pus.hidden(this.pus, function(){
-         console.log('弹窗关闭了');
-         });
-
-         }, this );
-         bnt.x = layer.width / 2;
-         bnt.y = 45;
-         var menu = new cc.Menu(bnt);
-         menu.x = 0;
-         menu.y = 0;
-         layer.addChild(menu); */
 
         //列表背景图
         var list = new cc.Sprite(res.List_png);
@@ -559,21 +500,40 @@ var MainLayer = cc.Layer.extend({
 
         //重新选关
         var selectItem = new cc.MenuItemImage(res.SelectNormal_png,res.SelectSelected_png, function () {
-            //王凯名 添加了音效判断2016/12/8
-            //EffectEngine.playEffect(res.Select);
             //关闭弹窗。function为回调函数，弹窗完全关闭后回调
             this.pus.hidden(this.pus, function(){
-                // console.log('跳转到选关界面');
                 cc.director.runScene(new LevelScene());
             });
         }, this);
 
         //继续游戏
         var continueItem = new cc.MenuItemImage(res.ContinueNormal_png,res.ContinueSelected_png, function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             this.newS.unschedule(this.newS.moveToNextRoad_slow);
-            this.newS.schedule(this.newS.moveToNextRoad,0.5);
+            if(this.newS.speed=="normal"){
+                this.newS.schedule(this.newS.moveToNextRoad,0.5);
+            }else {
+                this.newS.schedule(this.newS.moveToNextRoad_fast,0.3);
+            }
+
+            var pause0Item = new cc.MenuItemImage(res.pause_0,res.pause_0, function () {
+            }, this);
+            var pause1Item = new cc.MenuItemImage(res.pause_1,res.pause_1, function () {
+            }, this);
+
+            var pauseToggle = new cc.MenuItemToggle(pause0Item,pause1Item,function () {
+                cc.director.pause();
+                pauseToggle.getSelectedIndex();
+                cc.log(pauseToggle.getSelectedIndex());
+                if(pauseToggle.getSelectedIndex()==0){
+                    cc.director.resume();
+                }
+            },this);
+
+            var pauseMenu = new cc.Menu(pauseToggle);
+            pauseMenu.x = cc.winSize.width*0.8;
+            pauseMenu.y = cc.winSize.height*0.93;
+            this.addChild(pauseMenu);
+            //this.pause.getSelectedIndex()==0;
             this.pus.hidden(this.pus, function(){
                 console.log('通过导演恢复场景');
                 // cc.director.runScene(new LevelScene());
@@ -582,10 +542,7 @@ var MainLayer = cc.Layer.extend({
 
         //重新开始
         var repeatItem = new cc.MenuItemImage(res.RepeatNormal_png,res.RepeatSelected_png, function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             this.pus.hidden(this.pus, function(){
-                // console.log('跳转到游戏开始界面');
                 //this.newS.clearArray();
                 cc.director.runScene(new MainScene());
             });
@@ -640,8 +597,6 @@ var MainLayer = cc.Layer.extend({
 
         //重新开始按钮
         var repeatItem = new cc.MenuItemImage(res.RepeatNormal_png,res.RepeatSelected_png, function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             this.overpus.hidden(this.overpus, function(){
                 cc.director.runScene(new MainScene());
                 console.log('跳转到游戏开始界面');
@@ -721,11 +676,3 @@ var MainScene = cc.Scene.extend({
     }
 });
 
-//获取音效设置 王凯名
-var EffectEngine = function(){};
-EffectEngine.playEffect = function(url){
-    if (cc.sys.localStorage.getItem("isEffectOn") == "YES") {
-        cc.audioEngine.playEffect(url);
-        cc.log("1");
-    }
-};

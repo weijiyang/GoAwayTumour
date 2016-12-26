@@ -13,8 +13,6 @@ var TumourDetailLayer = cc.Layer.extend({
 
         //返回按钮
         var press= new cc.MenuItemImage(res.pressed, res.pressed2, function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             //详情介绍接口
             // cc.log("显示详情");
             cc.director.runScene(new IntroductionScene());
@@ -70,7 +68,7 @@ var TumourDetailLayer = cc.Layer.extend({
 
 
         //点击左边，右边显示肿瘤文字描述
-        var title1 = new cc.LabelTTF("变异细菌");
+        var title1 = new cc.LabelTTF("变形杆菌");
         title1.setFontSize(size.width*0.038);
         title1.setFontFillColor(cc.color.BLACK);
         title1.x = blackboard  .width * 0.5;
@@ -98,12 +96,25 @@ var TumourDetailLayer = cc.Layer.extend({
         title4.y =blackboard.height*0.35;
         blackboard.addChild(title4);
 
-        var title5 = new cc.LabelTTF("知识科普：");
+        /*var title5 = new cc.LabelTTF("知识科普：");
         title5.setFontSize(size.width*0.03);
         title5.setFontFillColor(cc.color.BLACK);
         title5.x = blackboard .width * 0.38;
         title5.y =blackboard.height*0.2;
-        blackboard.addChild(title5);
+        blackboard.addChild(title5);*/
+
+        var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+            //返回初次场景
+            cc.director.runScene(new TumouroneScene());
+        },this);
+        sciencerestart.x=blackboard.width*0.5;
+        sciencerestart.y=blackboard.height*0.15;
+        var menu=new cc.Menu(sciencerestart);
+        menu.x = 0;
+        menu.y = 0;
+        blackboard.addChild(menu);
+
+
 
 
         //肿瘤格子
@@ -155,11 +166,23 @@ var TumourDetailLayer = cc.Layer.extend({
         //肿瘤种类
         var cell1= new cc.MenuItemImage(res.tumour1, res.tumour12, function () {
             cellone.setTexture(res.tumour1);
-            title1.setString("变异细菌");
-            title2.setString("防御力值：5");
-            title3.setString("血量变化：2");
-            title4.setString("移动速度：1");
-            title5.setString("知识科普：");
+            //title1.setString("变形杆菌");
+            //title2.setString("防御力值：5");
+            //title3.setString("血量变化：2");
+            //title4.setString("移动速度：1");
+            //title5.setString("知识科普：");
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new TumouroneScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
+
         }, this);
         //菜单
         cell1.x = cellgridItem1.width*0.5;
@@ -172,11 +195,23 @@ var TumourDetailLayer = cc.Layer.extend({
 
         var cell2= new cc.MenuItemImage(res.tumour2, res.tumour22, function () {
             cellone.setTexture(res.tumour2);
-            title1.setString("病毒");
+            title1.setString("癌细胞");
             title2.setString("防御力值：3");
             title3.setString("血量变化：5");
             title4.setString("移动速度：1");
-            title5.setString("知识科普：");
+            //title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new TumourtwoScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell2.x = cellgridItem2.width*0.5;
@@ -189,11 +224,23 @@ var TumourDetailLayer = cc.Layer.extend({
 
         var cell3= new cc.MenuItemImage(res.tumour3, res.tumour32, function () {
             cellone.setTexture(res.tumour3);
-            title1.setString("癌细胞");
+            title1.setString("大肠杆菌");
             title2.setString("防御力值：7");
             title3.setString("血量变化：2");
             title4.setString("移动速度：5");
-            title5.setString("知识科普：");
+            //title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new TumourthreeScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell3.x = cellgridItem3.width*0.5;
@@ -206,11 +253,23 @@ var TumourDetailLayer = cc.Layer.extend({
 
         var cell4= new cc.MenuItemImage(res.tumour4, res.tumour42, function () {
             cellone.setTexture(res.tumour4);
-            title1.setString("球菌");
+            title1.setString("螺旋菌");
             title2.setString("防御力值：8");
             title3.setString("血量变化：1");
             title4.setString("移动速度：3");
-            title5.setString("知识科普：");
+            //title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new TumourthreeScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell4.x = cellgridItem4.width*0.5;
@@ -223,11 +282,23 @@ var TumourDetailLayer = cc.Layer.extend({
 
         var cell5= new cc.MenuItemImage(res.tumour5, res.tumour52, function () {
             cellone.setTexture(res.tumour5);
-            title1.setString("双球菌");
+            title1.setString("葡萄球菌");
             title2.setString("防御力值：6");
             title3.setString("血量变化：2");
             title4.setString("移动速度：2");
-            title5.setString("知识科普：");
+            //title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new TumourfiveScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell5.x = cellgridItem5.width*0.5;
@@ -240,11 +311,23 @@ var TumourDetailLayer = cc.Layer.extend({
 
         var cell6= new cc.MenuItemImage(res.tumour6, res.tumour62, function () {
             cellone.setTexture(res.tumour6);
-            title1.setString("螺旋菌");
+            title1.setString("链球菌");
             title2.setString("防御力值：7");
             title3.setString("血量变化：1");
             title4.setString("移动速度：8");
-            title5.setString("知识科普：");
+            //title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new TumoursixScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell6.x = cellgridItem6.width*0.5;
@@ -257,11 +340,23 @@ var TumourDetailLayer = cc.Layer.extend({
 
         var cell7= new cc.MenuItemImage(res.tumour7, res.tumour72, function () {
             cellone.setTexture(res.tumour7);
-            title1.setString("破伤风细菌");
+            title1.setString("病毒");
             title2.setString("防御力值：9");
             title3.setString("血量变化：2");
             title4.setString("移动速度：3");
-            title5.setString("知识科普：");
+            //title5.setString("知识科普：");
+
+            //点我学习
+            var sciencerestart = new cc.MenuItemImage(res.science11,res.science12,function () {
+                //返回初次场景
+                cc.director.runScene(new TumoursevenScene());
+            },this);
+            sciencerestart.x=blackboard.width*0.5;
+            sciencerestart.y=blackboard.height*0.15;
+            var menu=new cc.Menu(sciencerestart);
+            menu.x = 0;
+            menu.y = 0;
+            blackboard.addChild(menu);
         }, this);
         //菜单
         cell7.x = cellgridItem7.width*0.5;
@@ -285,11 +380,3 @@ var TumourDetailScene = cc.Scene.extend({
     }
 });
 
-//获取音效设置 王凯名
-var EffectEngine = function(){};
-EffectEngine.playEffect = function(url){
-    if (cc.sys.localStorage.getItem("isEffectOn") == "YES") {
-        cc.audioEngine.playEffect(url);
-        cc.log("1");
-    }
-};

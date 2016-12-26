@@ -1,18 +1,13 @@
 /**
- * Created by DELL on 2016/12/4.
+ * Created by DELL on 2016/12/7.
  */
-/**
- * Created by DELL on 2016/12/4.
- */
-
-
-var CellsevenLayer = cc.Layer.extend({
+var TumourthreeLayer = cc.Layer.extend({
     sprite:null,
     ctor:function () {
         this._super();
         var size = cc.winSize;
         //图鉴背景图层
-        var pokedexbg = new cc.Sprite(res.cellsciencebg7);
+        var pokedexbg = new cc.Sprite(res.tumoursciencebg3);
         pokedexbg.x=size.width*0.5;
         pokedexbg.y=size.height*0.5;
         //pokedexbg.setAnchorPoint(0,0);
@@ -22,7 +17,7 @@ var CellsevenLayer = cc.Layer.extend({
         var press= new cc.MenuItemImage(res.pressed, res.pressed2, function () {
             //详情介绍接口
             // cc.log("显示详情");
-            cc.director.runScene(new CellDetailScene());
+            cc.director.runScene(new TumourDetailScene());
         }, this);
         press.x = pokedexbg.width*0.05;
         press.y = pokedexbg.height*0.9;
@@ -36,12 +31,11 @@ var CellsevenLayer = cc.Layer.extend({
     }
 });
 
-var CellsevenScene = cc.Scene.extend({
+var TumourthreeScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
-        var layer = new CellsevenLayer();
+        var layer = new TumourthreeLayer();
         this.addChild(layer);
     }
 });
-
 

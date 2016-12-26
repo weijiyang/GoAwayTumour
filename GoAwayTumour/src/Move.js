@@ -13,11 +13,18 @@ var Move = cc.Sprite.extend({
     allBlood : 100, //总血量
     timer : null,
     size:null,
+    speed:"normal",
     ctor:function (fileName, rect, rotated) {
         this._super(fileName, rect, rotated);
         this.size = rect;
         var size = cc.winSize;
-        //this.fullBlood(0);
+
+        var drop = new dropBlood();
+        drop.setScale(0.5);
+        drop.x = 35;
+        drop.y = 80;
+        this.addChild(drop);
+
         this.clearArray();
         this.schedule(this.moveToNextRoad,0.5);
 
@@ -49,10 +56,12 @@ var Move = cc.Sprite.extend({
     moveToNextRoad:function () {
         var nextPosition = this.getNextPosition();
         this.runAction(cc.moveTo(0.5,cc.p(nextPosition.x,nextPosition.y)));
+        this.speed="normal";
     },
     moveToNextRoad_fast:function () {
         var nextPosition = this.getNextPosition_fast();
         this.runAction(cc.moveTo(0.25,cc.p(nextPosition.x,nextPosition.y)));
+        this.speed="fast";
     },
     moveToNextRoad_slow:function () {
         var nextPosition = this.getNextPosition_slow();

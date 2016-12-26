@@ -3,11 +3,9 @@
  */
 var StartLayer = cc.Layer.extend({
     sprite:null,
-
     ctor:function () {
         this._super();
         var size = cc.winSize;
-
         DTHIS = this;    //DTHIS在此处类似于that
 
         this.initTc();
@@ -27,9 +25,8 @@ var StartLayer = cc.Layer.extend({
 
         //开始游戏按钮
         var startItem = new cc.MenuItemImage(res.startbtn,res.startbtn2,function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             //进入选关页面接口
+            cc.audioEngine.playEffect(res.Select);
             cc.director.runScene(new LevelScene());
         }, this);
         var menu1 = new cc.Menu(startItem);
@@ -38,10 +35,9 @@ var StartLayer = cc.Layer.extend({
 
         //关于我们
         var aboutUsItem = new cc.MenuItemImage( res.aboutusbtn, res.aboutusbtn2, function () {
-            //王凯名 添加了音效判断2016/12/8
-            EffectEngine.playEffect(res.Select);
             //显示弹窗。function为回调函数，弹窗完全展示后回调
             this.pus.show(this.pus, function(){
+                cc.audioEngine.playEffect(res.Select);
                 console.log('关于我们弹窗打开了');
             });
         }, this );
@@ -142,11 +138,4 @@ var StartScene = cc.Scene.extend({
         this.addChild(layer);
     }
 });
-//获取音效设置 王凯名
-var EffectEngine = function(){};
-EffectEngine.playEffect = function(url){
-    if (cc.sys.localStorage.getItem("isEffectOn") == "YES") {
-        cc.audioEngine.playEffect(url);
-        cc.log("1");
-    }
-};
+

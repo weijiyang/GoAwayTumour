@@ -5,7 +5,7 @@ var Cell1 = TowerBase.extend({
         this.schedule(this.onRotateAndFire, 0.5);
     },
     loadWeapon : function(){
-        var node = new cc.Sprite(res.cell1_png);
+        var node = new MyCell(res.cell1_png);
         this.addChild(node);
         this.weapon = node;
         node.setPosition(this.width / 2, this.height / 2);
