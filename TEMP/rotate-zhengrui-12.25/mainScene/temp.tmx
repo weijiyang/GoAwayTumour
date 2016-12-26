@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="17" height="10" tilewidth="70" tileheight="70" nextobjectid="4">
+ <tileset firstgid="1" name="游戏瓦片2" tilewidth="70" tileheight="70" spacing="1" margin="1" tilecount="144" columns="16">
+  <image source="../../../../游戏瓦片2.png" width="1136" height="640"/>
+  <tile id="18">
+   <properties>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="73">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="75">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="76">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="77">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="78">
+   <properties>
+    <property name="type" value="road"/>
+   </properties>
+  </tile>
+  <tile id="98">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="99">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="101">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="102">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="103">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="104">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="105">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="106">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="107">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="114">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="115">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+  <tile id="121">
+   <properties>
+    <property name="type" value="block"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="145" name="游戏瓦片1" tilewidth="70" tileheight="70" spacing="1" margin="1" tilecount="144" columns="16">
+  <image source="../../../../游戏瓦片1.png" width="1136" height="640"/>
+ </tileset>
+ <layer name="bg" width="17" height="10">
+  <data encoding="csv">
+19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+19,19,19,19,36,37,19,106,19,102,19,19,99,100,19,19,19,
+19,66,67,67,19,19,19,122,19,19,19,19,115,116,19,19,19,
+19,19,19,69,19,105,69,69,69,69,69,19,19,19,69,69,19,
+19,41,19,69,19,19,69,19,19,19,69,19,19,19,69,19,19,
+19,19,19,69,19,19,69,41,19,19,69,19,102,19,69,19,19,
+19,105,19,69,69,69,69,19,42,19,69,19,19,19,69,19,19,
+19,19,19,19,19,106,19,19,19,19,69,19,19,42,69,19,19,
+19,19,39,19,19,122,19,36,37,106,69,69,69,69,69,19,19,
+19,19,19,19,19,19,19,19,19,122,19,19,19,19,102,19,19
+</data>
+ </layer>
+ <objectgroup name="object">
+  <object id="1" name="player" x="70" y="140" width="70" height="70"/>
+  <object id="3" name="end" x="1050" y="210" width="70" height="70"/>
+ </objectgroup>
+</map>
