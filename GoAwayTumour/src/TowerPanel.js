@@ -26,20 +26,32 @@ var TowerPanel = cc.Sprite.extend({
         // cc.spriteFrameCache.addSpriteFrames(gameres.Bottleplist_plist,gameres.Bottle_png);
         cc.spriteFrameCache.addSpriteFrames(res.Bottleplist_plist,res.Bottle_png);
         var node = new cc.Sprite("#Bottle01.png");
+        var node1 = new cc.Sprite(res.cell1_png);
+        var node2 = new cc.Sprite(res.cell2_png);
         // var node = new cc.Sprite(cc.spriteFrameCache.getSpriteFrame("Bottle00.png"));
         // var node = new cc.Sprite(gameres.Bottle_01);
 
         // node.anchorX = 0;
         // node.anchorY = 0;
         this.addChild(node);
+        this.addChild(node1);
+        this.addChild(node2);
         node.setAnchorPoint(0.5, 0);
+        node1.setAnchorPoint(0.5, 0);
+        node2.setAnchorPoint(0.5, 0);
         node.setName("Bottle");
+        node1.setName("Cell1");
+        node2.setName("Cell2");
 
         // 位置修正
         if (this.y >= cc.winSize.height - 2 * this.height) {
             node.setPosition(this.width / 2, -this.height);
+            node1.setPosition(-this.width / 2 , 0);
+            node2.setPosition(3 * this.width / 2 ,0);
         }else{
             node.setPosition(this.width / 2, this.height);
+            node1.setPosition(-this.width / 2 , 0);
+            node2.setPosition(3 * this.width / 2 , 0);
         }
 
         // 注册触摸事件
@@ -51,7 +63,26 @@ var TowerPanel = cc.Sprite.extend({
             onTouchMoved  : this.onTouchMoved,
             onTouchEnded  : this.onTouchEnded
         });
+        var onTouchEventListener1 = cc.EventListener.create({
+            event           : cc.EventListener.TOUCH_ONE_BY_ONE,
+            target          : node1,
+            swallowTouches  : true,
+            onTouchBegan  : this.onTouchBegan,
+            onTouchMoved  : this.onTouchMoved,
+            onTouchEnded  : this.onTouchEnded
+        });
+        var onTouchEventListener2 = cc.EventListener.create({
+            event           : cc.EventListener.TOUCH_ONE_BY_ONE,
+            target          : node2,
+            swallowTouches  : true,
+            onTouchBegan  : this.onTouchBegan,
+            onTouchMoved  : this.onTouchMoved,
+            onTouchEnded  : this.onTouchEnded
+        });
+
         cc.eventManager.addListener(onTouchEventListener, node);
+        cc.eventManager.addListener(onTouchEventListener1, node1);
+        cc.eventManager.addListener(onTouchEventListener2, node2);
     },
     onTouchBegan: function (touch, event) {
         var target = event.getCurrentTarget();
