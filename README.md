@@ -1,4 +1,6 @@
 ## [GoAwayTumour](http://123.206.72.234) [《滚蛋吧 ！ 肿瘤君》](http://123.206.72.234)
+
+![img1](https://img.shields.io/badge/license-MIT-green.svg)  ![IMG2](https://img.shields.io/badge/version-v2.0.0-orange.svg) ![img3](https://img.shields.io/badge/team-snail-yellow.svg) ![img4](https://img.shields.io/badge/coverage-90%25-brightgreen.svg)
 ***
 ## 游戏介绍
    《滚蛋吧！肿瘤君》 为河北师范大学软件学院蜗牛游戏开发团队发起的开源游戏项目，该游戏定位是一个具有科普教育意义的塔防闯关类小游戏。让玩家在娱乐的同时得到相关知识的普及
